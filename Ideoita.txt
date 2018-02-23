@@ -1,0 +1,10 @@
+Botti: Hallituschattiin TG-botti, jota kautta lisätä kulukorvaus
+PostgreSQLportti 5432
+korvataankuluja
+
+user : postgres
+
+$virtualenv ENV
+
+SUPERUSER = TEEMU
+PW = ks settings

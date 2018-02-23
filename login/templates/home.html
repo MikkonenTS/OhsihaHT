@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+<head>
+  <title>Korvaa sitä kulua</title>
+</head>
+  <h1>
+<font face = "Comic sans MS" size =" 6">Tervetuloa N.N:n yhdistyksen sähköiseen
+kulukorvausjärjestelmään!</font><br /></h1>
+  <p>Uusi käyttäjä?</p>
+  <!--TODO linkki kirjautumiseen-->
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
+{% endblock %}
