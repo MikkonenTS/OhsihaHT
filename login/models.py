@@ -14,5 +14,5 @@ class Palautus(models.Model):
     #palautustiedosto
 
 #MUISTA, DJANGO LUO ID:N AUTOMAATTISESTI
-# yläpuolella polls appin koodia
+
 # Create your models here.
