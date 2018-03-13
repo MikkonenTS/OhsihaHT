@@ -1,8 +1,5 @@
 from django.db import models
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
-#from django import forms
-#vaihtoehtoisesti tällä, pitäiskö tehä oma forms.py
+from django.contrib.auth.models import User
 
 class Profiles(models.Model):
     """Käyttäjäprofiilien tallennus"""
@@ -12,10 +9,11 @@ class Profiles(models.Model):
     #firstname = models.CharField(max_length=50)
     #lastname = models.CharField(max_length=50)
 
-class Palautus(models.Model):
-    palauttaja = models.CharField(max_length=200)
-    palautuspvm = models.DateTimeField('korvauksen pvm')
-    #palautustiedosto
+class Document(models.Model):
+    selite = models.CharField(max_length=250, blank = True)
+    #palauttaja = models.ForeignKey(User)
+    palautusaika = models.DateTimeField(auto_now_add=True)
+    korvausdokumentti = models.FileField(upload_to='korvaukset/')
 
 #MUISTA, DJANGO LUO ID:N AUTOMAATTISESTI
 

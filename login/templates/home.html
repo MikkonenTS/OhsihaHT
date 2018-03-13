@@ -5,7 +5,12 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
+  Tervetuloa {{ user.username }}!
+
+  <p><a href="{% url 'upload' %}">Lisää kulukorvaus</a></p>
+  <p></p>
+  <p>Tarkastele kulukorvauksia</p>
+
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
 <head>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Lähetä</button>
+  </form>
+
+  <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
+{% endblock %}
