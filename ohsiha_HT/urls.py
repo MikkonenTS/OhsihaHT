@@ -21,7 +21,5 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('login/', include('login.urls')),
     path('admin/', admin.site.urls),
-    #path('login/', include ('login.urls')),
-    # vanha versio, johtaa login.views.
     path('login/', include('django.contrib.auth.urls')),
 ]

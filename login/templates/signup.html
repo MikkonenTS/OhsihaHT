@@ -2,9 +2,32 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Kirjaudu palveluun</title>
+    <title>Kirjaudu</title>
+    <header>
+      <h1>Kirjaudu palveluun</h1>
+    </header>
   </head>
   <body>
-Kirjautuminen tähän
-  </body>
+  <form name="RegistrationForm" action="/register/" method=
+  "post">
+  <p>Käyttäjätunnus</p>
+  <!--Varmista mitä tekee, mallia otettu Aleksi Roimalta, lisäkenttiä:
+  tehtävä hallituksessa.
+Mieti vaihtoehtoisesti että Kenttä samalle riville, lyhennä välejä (CSS)-->
+  {% csrf_token %}
+  {% if next %}
+  <input type="hidden" name="next" value="{{ next }}"/>
+  {% endif %}
+  <input type="text" name="username" autofocus required
+   id="username" maxlength="150">
+   <p>Etunimi</p>
+   <input type="text" name="firstname" id="firstname">
+   <p>Sukunimi</p>
+   <input type="text" name="lastname" id="lastname">
+   <p>Sähköpostiosoite</p>
+   <input type="text" name="email" id="email">
+   <p>
+   <button type="button" name = rekisteröidy>Rekisteröidy palveluun</button>
+ </p>
+ </body>
 </html>
