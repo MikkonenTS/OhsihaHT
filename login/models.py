@@ -11,7 +11,7 @@ class Profiles(models.Model):
 
 class Document(models.Model):
     selite = models.CharField(max_length=250, blank = True)
-    #palauttaja = models.ForeignKey(User)
+    #palauttaja = models.ForeignKey(User, on_delete=models.CASCADE, default="")
     palautusaika = models.DateTimeField(auto_now_add=True)
     korvausdokumentti = models.FileField(upload_to='korvaukset/')
 

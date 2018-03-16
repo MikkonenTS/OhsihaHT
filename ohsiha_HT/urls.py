@@ -24,6 +24,9 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('admin/', admin.site.urls),
     path('login/', include('django.contrib.auth.urls')),
+    path('media/', TemplateView.as_view(template_name='korvaukset.html'), name='kulukorvaukset'),
+
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
