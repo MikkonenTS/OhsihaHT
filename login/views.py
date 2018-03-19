@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect, render_to_response
 from django.urls import reverse_lazy
 from django.views import generic
 from login.forms import DocumentForm
+from django.conf import settings
+from .models import Document
 
 def index(request):
 
@@ -27,11 +29,8 @@ def upload(request):
         'form': form
     })
 
-'''def korvaukset(request):
-    #tähän tarvitaan käyttäjävarmenne, if User = oikea -> show user's
-    #toinen vaihtoehto= def korvaukset(request,user)
-    Korvauslista = []
-    while True:
-        korvaus = get_object_or_404()
-        korvauslista.append(korvaus)
-    return render(request, 'korvaukset.html')'''
+def korvaukset(request):
+
+    kulukorvaukset = Document.objects.all() #filtterin avulla järjestys ja käyttäjä?
+
+    return render(request, 'korvaukset.html', {'kulukorvaukset':kulukorvaukset})

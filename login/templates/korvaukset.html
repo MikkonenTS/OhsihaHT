@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+{%load staticfiles%}
+{%load static%}
+
 
 {% block title %}Korvaukset{% endblock %}
-{{ MEDIA_ROOT }}
+
 
 {% block content %}
   <h2>Korvaukset</h2>
+
+  {% if kulukorvaukset %}
+   Sinulla on {{ kulukorvaukset|length }} järjestelmään tallennettua kulukorvausta:
+   <p></p>
+   {% for korvaus in kulukorvaukset %}
+      <p></p>
+      <a href= "{%get_media_prefix%}{{korvaus.korvausdokumentti}}">Kulukorvaus {{forloop.counter}}</a>
+   {% endfor %}
+{% else %}
+   Sinulla ei ole järjestelmään tallennettuja kulukorvauksia
+{% endif %}
 
   <p>Korvaukset tähän</p>
 {% endblock %}

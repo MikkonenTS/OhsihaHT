@@ -24,7 +24,7 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('admin/', admin.site.urls),
     path('login/', include('django.contrib.auth.urls')),
-    path('media/', TemplateView.as_view(template_name='korvaukset.html'), name='kulukorvaukset'),
+    #path('login/korvaukset/', TemplateView.as_view(template_name='korvaukset.html'), name='korvaukset'),
 
 
 ]
