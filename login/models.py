@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.sessions.models import Session
 
 class Profiles(models.Model):
     """Käyttäjäprofiilien tallennus"""
@@ -10,11 +12,11 @@ class Profiles(models.Model):
     #lastname = models.CharField(max_length=50)
 
 class Document(models.Model):
+
     selite = models.CharField(max_length=250, blank = True)
-    #palauttaja = models.ForeignKey(User, on_delete=models.CASCADE, default="")
+    palauttaja = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default = 1)
     palautusaika = models.DateTimeField(auto_now_add=True)
     korvausdokumentti = models.FileField(upload_to='korvaukset/')
 
-#MUISTA, DJANGO LUO ID:N AUTOMAATTISESTI
 
-# Create your models here.
+#MUISTA, DJANGO LUO ID:N AUTOMAATTISESTI

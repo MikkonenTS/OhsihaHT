@@ -7,6 +7,8 @@ from django.views import generic
 from login.forms import DocumentForm
 from django.conf import settings
 from .models import Document
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 def index(request):
 
@@ -14,14 +16,18 @@ def index(request):
 
 class Signup(generic.CreateView):
     form_class = UserCreationForm
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('login')
     template_name = 'signup.html'
 
 def upload(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
+
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            instance.palauttaja = request.user
+            instance.save()
+
             return redirect('home')
     else:
         form = DocumentForm()
@@ -31,6 +37,6 @@ def upload(request):
 
 def korvaukset(request):
 
-    kulukorvaukset = Document.objects.all() #filtterin avulla järjestys ja käyttäjä?
+    kulukorvaukset = Document.objects.filter(palauttaja_id=request.user.id) #filtterin avulla käyttäjä?
 
     return render(request, 'korvaukset.html', {'kulukorvaukset':kulukorvaukset})

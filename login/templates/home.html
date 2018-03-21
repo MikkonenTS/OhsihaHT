@@ -17,10 +17,11 @@
   <title>Korvaa sitä kulua</title>
 </head>
   <h1>
-<font face = "Comic sans MS" size =" 6">Tervetuloa N.N:n yhdistyksen sähköiseen
+<font face = "Comic sans MS" size =" 4">Tervetuloa N.N:n yhdistyksen sähköiseen
 kulukorvausjärjestelmään!</font><br /></h1>
-  <p>Uusi käyttäjä?</p>
-  <!--TODO linkki kirjautumiseen-->
-  <a href="{% url 'signup' %}">login</a>
+
+  <a href="{% url 'signup' %}">Rekisteröidy palveluun</a>
+  <p></p>
+  <a href="{% url 'login' %}">Kirjaudu</a>
 {% endif %}
 {% endblock %}

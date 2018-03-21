@@ -13,13 +13,17 @@
   {% if kulukorvaukset %}
    Sinulla on {{ kulukorvaukset|length }} järjestelmään tallennettua kulukorvausta:
    <p></p>
+
    {% for korvaus in kulukorvaukset %}
       <p></p>
-      <a href= "{%get_media_prefix%}{{korvaus.korvausdokumentti}}">Kulukorvaus {{forloop.counter}}</a>
+      <a href= "{%get_media_prefix%}{{korvaus.korvausdokumentti}}">
+         {{korvaus.selite}}</a>
+
+      <p>{{korvaus.palautusaika}}</p>
    {% endfor %}
+
 {% else %}
    Sinulla ei ole järjestelmään tallennettuja kulukorvauksia
 {% endif %}
 
-  <p>Korvaukset tähän</p>
 {% endblock %}
