@@ -37,6 +37,20 @@ def upload(request):
 
 def korvaukset(request):
 
-    kulukorvaukset = Document.objects.filter(palauttaja_id=request.user.id) #filtterin avulla käyttäjä?
-    
-    return render(request, 'korvaukset.html', {'kulukorvaukset':kulukorvaukset})
+    kulukorvaukset = Document.objects.filter(palauttaja_id=request.user.id)
+    korvaussummat = Document.objects.filter(palauttaja_id=request.user.id).values('korvaussumma')
+
+    total_list=[]
+    total = 0
+
+    for summa in korvaussummat:
+        total_list.append(list(summa.values()))
+    #TODO järkeistä kun on aikaa
+    for korvaussumma in total_list:
+        for alkio in korvaussumma:
+            total += alkio
+
+    template_data = {'kulukorvaukset':kulukorvaukset,
+            'total':total,}
+
+    return render(request, 'korvaukset.html', template_data)

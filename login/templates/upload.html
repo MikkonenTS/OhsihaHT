@@ -2,11 +2,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1>Lisää kulukorvaushakemus</h1>
+<p></p>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Lähetä</button>
   </form>
-
+  <p></p>
   <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
 {% endblock %}

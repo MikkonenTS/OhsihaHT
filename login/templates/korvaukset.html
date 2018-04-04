@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 {% extends 'base.html' %}
 {%load staticfiles%}
 {%load static%}
@@ -8,29 +8,98 @@
 
 
 {% block content %}
-  <h2>Korvaukset</h2>
+  <h1>Korvaushakemukset</h1>
 
   {% if kulukorvaukset %}
-   Sinulla on {{ kulukorvaukset|length }} järjestelmään tallennettua kulukorvausta:
-   <p></p>
-
-   {% for korvaus in kulukorvaukset %}
-      <table>
+    {% if kulukorvaukset|length == 1%}
+      Sinulla on 1 järjestelmään tallennettu kulukorvaushakemus
+    {% else %}
+      Sinulla on {{ kulukorvaukset|length }} järjestelmään
+       tallennettua kulukorvaushakemusta:
+    {% endif %}
+    <p></p>
+    <p>Merkkien selitykset</p>
+     <table class ="table table-bordered" style="font-size:12px">
+       <col width = 20%>
+       <tr>
+         <td>
+           Hakemus on lähetetty
+         </td>
+         <td>
+          <svg fill = "yellow" stroke = "black" width = 5% height = 10% xmlns="http://www.w3.org/2000/svg"
+          xmlns:serif="http://www.serif.com/" fill-rule="evenodd" clip-rule="evenodd"><circle serif:id="shape 19" cx="7" cy ="7" r="7"/>
+          </svg>
+         </td>
+       </tr>
+       <tr>
+         <td>Hakemus on hyväksytty</td>
+         <td>
+           <svg xmlns="http://www.w3.org/2000/svg" fill="green" width = 2%
+            viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011
+            -3.714 3.716 9 8.728 15-15.285z"/>
+           </svg>
+         </td>
+       </tr>
+       <tr>
+         <td>Hakemus on hylätty</td>
+         <td><svg xmlns="http://www.w3.org/2000/svg" width = 2%
+          fill = "red" viewBox="0 0 24 24"><path d="M23 20.168l-8.185-8.187
+          8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186
+           8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/>
+         </svg></td>
+       </tr>
+     </table>
+     <p></p>
+     <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Kulukorvausdokumentti</th>
+            <th scope="col">Palautuspäivämäärä</th>
+            <th scope="col">Korvaussumma</th>
+            <th scope="col">Hakemuksen tila</th>
+          </tr>
+        </thead>
+    {% for korvaus in kulukorvaukset %}
         <tr>
           <td>
-            <a href= "{%get_media_prefix%}{{korvaus.korvausdokumentti}}">{{korvaus.selite}}</a></td>
+            <a href= "{%get_media_prefix%}{{korvaus.korvausdokumentti}}">
+              {{korvaus.selite}}</a></td>
           <td>
-            {{korvaus.palautusaika}}</td>
+            {{korvaus.palautusaika |date:"d M Y H:i"}}</td>
           <td>{{korvaus.korvaussumma}} €</td>
-          <td>{{korvaus.status}}</td>
+          {% if korvaus.status == 'HYV' %}
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30", fill="green"
+             viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011
+             -3.714 3.716 9 8.728 15-15.285z"/>
+            </svg>
+          </td>
+          {% elif korvaus.status == 'HYL' %}
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+             fill = "red" viewBox="0 0 24 24"><path d="M23 20.168l-8.185-8.187
+             8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186
+              8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/>
+            </svg>
+          </td>
+          {% elif korvaus.status == 'LAH' %}
+          <td>
+            <svg width="24" height="24" fill = "yellow" stroke = "black" xmlns="http://www.w3.org/2000/svg"
+             xmlns:serif="http://www.serif.com/" fill-rule="evenodd" clip-rule="evenodd"><circle serif:id="shape 19" cx="12" cy="12" r="12"/>
+            </svg>
+          </td>
+          {% endif %}
         </tr>
-      </table>
+
    {% endfor %}
+   </table>
+
+   <p>Korvaushakemustesi summa on yhteensä {{ total }} €</p>
+
 
   {% else %}
      Sinulla ei ole järjestelmään tallennettuja kulukorvauksia
   {% endif %}
-
-
-
+  <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
 {% endblock %}

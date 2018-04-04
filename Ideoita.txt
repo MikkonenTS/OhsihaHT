@@ -14,3 +14,5 @@ Tallenna usereihin
 {%for korvaus in kulukorvaukset%}
   <a href="{%get_media_prefix %}Kulukorvaus1.pdf">testi</a>
 {%endfor%} (toimii)
+
+Hyväksymispvm/kokouksen nro. 
