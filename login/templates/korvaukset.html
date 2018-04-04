@@ -15,15 +15,22 @@
    <p></p>
 
    {% for korvaus in kulukorvaukset %}
-      <p></p>
-      <a href= "{%get_media_prefix%}{{korvaus.korvausdokumentti}}">
-         {{korvaus.selite}}</a>
-
-      <p>{{korvaus.palautusaika}}</p>
+      <table>
+        <tr>
+          <td>
+            <a href= "{%get_media_prefix%}{{korvaus.korvausdokumentti}}">{{korvaus.selite}}</a></td>
+          <td>
+            {{korvaus.palautusaika}}</td>
+          <td>{{korvaus.korvaussumma}} €</td>
+          <td>{{korvaus.status}}</td>
+        </tr>
+      </table>
    {% endfor %}
 
-{% else %}
-   Sinulla ei ole järjestelmään tallennettuja kulukorvauksia
-{% endif %}
+  {% else %}
+     Sinulla ei ole järjestelmään tallennettuja kulukorvauksia
+  {% endif %}
+
+
 
 {% endblock %}

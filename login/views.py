@@ -38,5 +38,5 @@ def upload(request):
 def korvaukset(request):
 
     kulukorvaukset = Document.objects.filter(palauttaja_id=request.user.id) #filtterin avulla käyttäjä?
-
+    
     return render(request, 'korvaukset.html', {'kulukorvaukset':kulukorvaukset})
