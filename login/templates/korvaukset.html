@@ -26,7 +26,7 @@
            Hakemus on lähetetty
          </td>
          <td>
-          <svg fill = "yellow" stroke = "black" width = 5% height = 10% xmlns="http://www.w3.org/2000/svg"
+          <svg fill = "gold"  width = 5% height = 10% xmlns="http://www.w3.org/2000/svg"
           xmlns:serif="http://www.serif.com/" fill-rule="evenodd" clip-rule="evenodd"><circle serif:id="shape 19" cx="7" cy ="7" r="7"/>
           </svg>
          </td>
@@ -58,6 +58,7 @@
             <th scope="col">Palautuspäivämäärä</th>
             <th scope="col">Korvaussumma</th>
             <th scope="col">Hakemuksen tila</th>
+            <th scope = "col">Poista</th>
           </tr>
         </thead>
     {% for korvaus in kulukorvaukset %}
@@ -71,26 +72,32 @@
           {% if korvaus.status == 'HYV' %}
           <td>
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30", fill="green"
-             viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011
-             -3.714 3.716 9 8.728 15-15.285z"/>
+             viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716
+              9 8.728 15-15.285z"/>
             </svg>
           </td>
           {% elif korvaus.status == 'HYL' %}
           <td>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-             fill = "red" viewBox="0 0 24 24"><path d="M23 20.168l-8.185-8.187
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill = "red"
+            viewBox="0 0 24 24"><path d="M23 20.168l-8.185-8.187
              8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186
               8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/>
             </svg>
           </td>
           {% elif korvaus.status == 'LAH' %}
           <td>
-            <svg width="24" height="24" fill = "yellow" stroke = "black" xmlns="http://www.w3.org/2000/svg"
+            <svg width="24" height="24" fill = "gold" xmlns="http://www.w3.org/2000/svg"
              xmlns:serif="http://www.serif.com/" fill-rule="evenodd" clip-rule="evenodd"><circle serif:id="shape 19" cx="12" cy="12" r="12"/>
             </svg>
           </td>
           {% endif %}
+          <td>
+            <a class="btn btn-primary"
+             href="{% url 'poista_korvaus'%}{{korvaus.id}}" role = "button">Poista hakemus
+           </a>
+          </td>
         </tr>
+
 
    {% endfor %}
    </table>

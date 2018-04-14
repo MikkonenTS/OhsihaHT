@@ -28,7 +28,8 @@ def upload(request):
             instance.palauttaja = request.user
             instance.save()
 
-            return redirect('home')
+            messages.success(request, 'Tiedoston lataaminen onnistui')
+
     else:
         form = DocumentForm()
     return render(request, 'upload.html', {
@@ -51,6 +52,14 @@ def korvaukset(request):
             total += alkio
 
     template_data = {'kulukorvaukset':kulukorvaukset,
-            'total':total,}
+                    'total':total,
+                    }
 
     return render(request, 'korvaukset.html', template_data)
+
+def poista_korvaus(request, id):
+
+
+    kulukorvaukset = Document.object.filter(Document_id = id).delete()
+
+    return redirect(korvaukset)

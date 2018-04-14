@@ -9,6 +9,13 @@
     {{ form.as_p }}
     <button type="submit">Lähetä</button>
   </form>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
   <p></p>
   <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
 {% endblock %}
