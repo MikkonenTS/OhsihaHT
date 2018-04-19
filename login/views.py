@@ -4,12 +4,12 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
-from login.forms import DocumentForm
+from login.forms import DocumentForm, MuutosForm
 from django.conf import settings
 from .models import Document
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, UpdateView
 
 def index(request):
 
@@ -51,7 +51,7 @@ def korvaukset(request):
 
     for summa in korvaussummat:
         total_list.append(list(summa.values()))
-    #TODO järkeistä kun on aikaa
+        
     for korvaussumma in total_list:
         for alkio in korvaussumma:
             total += alkio
@@ -66,3 +66,9 @@ def poista_korvaus(request, pk):
     post = get_object_or_404(Document, pk = pk)
     post.delete()
     return redirect('korvaukset')
+
+class muuta_korvaus(UpdateView):
+    template_name = 'document_update_form.html'
+    form_class = MuutosForm
+    model = Document
+    success_url = reverse_lazy('korvaukset')

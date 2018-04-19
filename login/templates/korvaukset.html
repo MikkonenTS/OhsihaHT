@@ -8,6 +8,9 @@
 
 
 {% block content %}
+<div class="m-4 pb-3">
+
+
   <h1>Korvaushakemukset</h1>
 
   {% if kulukorvaukset %}
@@ -48,6 +51,7 @@
            8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/>
          </svg></td>
        </tr>
+
      </table>
      <p></p>
      <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
@@ -58,6 +62,7 @@
             <th scope="col">Palautuspäivämäärä</th>
             <th scope="col">Korvaussumma</th>
             <th scope="col">Hakemuksen tila</th>
+            <th scope = "col">Muuta</th>
             <th scope = "col">Poista</th>
           </tr>
         </thead>
@@ -91,6 +96,10 @@
             </svg>
           </td>
           {% endif %}
+
+          <td>
+            <a class="btn btn-primary" href ="{% url 'muuta_korvaus' korvaus.id%}" method = "post">Muuta korvausta</a>
+          </td>
           <td>
             <a class="btn btn-primary" href ="{% url 'poista_korvaus' korvaus.id%}" method = "post">Poista</a>
           </td>
@@ -100,11 +109,12 @@
    {% endfor %}
    </table>
 
-   <p>Korvaushakemustesi summa on yhteensä {{ total }} €</p>
+   <p>Korvaushakemustesi summa on yhteensä <b>{{ total }}</b> €</p>
 
 
   {% else %}
      Sinulla ei ole järjestelmään tallennettuja kulukorvauksia
   {% endif %}
   <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
+</div>
 {% endblock %}

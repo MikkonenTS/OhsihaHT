@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Muuta kulukorvaushakemusta</h1>
+<p></p>
+<div class="m-4 pb-3">
+
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Lähetä</button>
+  </form>
+
+  <p><a href="{%url 'korvaukset'%}">Palaa hakemuslistaan</a></p>
+  <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
+</div>
+{% endblock %}

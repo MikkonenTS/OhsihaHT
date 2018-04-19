@@ -2,6 +2,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<div class="m-4 pb-3">
+
+
 <h1>Lisää kulukorvaushakemus</h1>
 <p></p>
   <form method="post" enctype="multipart/form-data">
@@ -17,5 +21,6 @@
   </ul>
 {% endif %}
   <p></p>
-  <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
+  <p><a class="btn btn-primary" href="{% url 'home' %}">Palaa pääikkunaan</a></p>
 {% endblock %}
+</div>

@@ -4,14 +4,17 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<div class="m-4 pb-3">
+
+
 {% if user.is_authenticated %}
   <h1>Tervetuloa {{ user.username }}!</h1>
-
-  <h6><a href="{% url 'upload' %}">Lisää kulukorvaus</a></h6>
   <p></p>
-  <h6><a href="{% url 'korvaukset' %}">Tarkastele kulukorvauksia</a></h6>
+  <h6><a class="btn btn-primary" href="{% url 'upload' %}">Lisää kulukorvaus</a></h6>
   <p></p>
-  <h6><a href="{% url 'logout' %}">Kirjaudu ulos</a></h6>
+  <h6><a class="btn btn-primary" href="{% url 'korvaukset' %}">Tarkastele kulukorvauksia</a></h6>
+  <p></p>
+  <h6><a class="btn btn-primary" href="{% url 'logout' %}">Kirjaudu ulos</a></h6>
 {% else %}
 <head>
   <title>Kulukorvaushakemusjärjestelmä</title>
@@ -19,11 +22,13 @@
   <h1>
     Tervetuloa N.N:n yhdistyksen sähköiseen
     kulukorvausjärjestelmään!</h1>
+    <p></p>
 
   <h6>
-  <a href="{% url 'signup' %}">Rekisteröidy palveluun</a></h6>
+  <a class="btn btn-primary" href="{% url 'signup' %}">Rekisteröidy palveluun</a></h6>
   <p></p>
   <h6>
-  <a href="{% url 'login' %}">Kirjaudu</a></h6>
+  <a class="btn btn-primary" href="{% url 'login' %}">Kirjaudu</a></h6>
 {% endif %}
+</div>
 {% endblock %}

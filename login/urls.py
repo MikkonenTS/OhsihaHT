@@ -10,5 +10,5 @@ urlpatterns = [
     path('upload/', views.upload, name='upload'),
     path('korvaukset/', views.korvaukset, name='korvaukset'),
     path('poista_korvaus/<int:pk>/', views.poista_korvaus, name='poista_korvaus'),
-
+    path('muuta_korvaus/<int:pk>/', muuta_korvaus.as_view(), name = 'muuta_korvaus'), 
 ]
