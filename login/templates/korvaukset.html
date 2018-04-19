@@ -92,9 +92,7 @@
           </td>
           {% endif %}
           <td>
-            <a class="btn btn-primary"
-             href="{% url 'poista_korvaus'%}{{korvaus.id}}" role = "button">Poista hakemus
-           </a>
+            <a class="btn btn-primary" href ="{% url 'poista_korvaus' korvaus.id%}" method = "post">Poista</a>
           </td>
         </tr>
 

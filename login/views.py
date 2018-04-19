@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 from login.forms import DocumentForm
@@ -9,6 +9,7 @@ from django.conf import settings
 from .models import Document
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.views.generic import DeleteView
 
 def index(request):
 
@@ -38,6 +39,10 @@ def upload(request):
 
 def korvaukset(request):
 
+    if request.method == 'POST':
+        #tähän erittely updatelle
+        print(request)
+
     kulukorvaukset = Document.objects.filter(palauttaja_id=request.user.id)
     korvaussummat = Document.objects.filter(palauttaja_id=request.user.id).values('korvaussumma')
 
@@ -57,9 +62,7 @@ def korvaukset(request):
 
     return render(request, 'korvaukset.html', template_data)
 
-def poista_korvaus(request, id):
-
-
-    kulukorvaukset = Document.object.filter(Document_id = id).delete()
-
-    return redirect(korvaukset)
+def poista_korvaus(request, pk):
+    post = get_object_or_404(Document, pk = pk)
+    post.delete()
+    return redirect('korvaukset')
