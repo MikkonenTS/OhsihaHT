@@ -10,7 +10,6 @@
 {% block content %}
 <div class="m-4 pb-3">
 
-
   <h1>Korvaushakemukset</h1>
 
   {% if kulukorvaukset %}
@@ -20,6 +19,7 @@
       Sinulla on {{ kulukorvaukset|length }} järjestelmään
        tallennettua kulukorvaushakemusta:
     {% endif %}
+
     <p></p>
     <p>Merkkien selitykset</p>
      <table class ="table table-bordered" style="font-size:12px">
@@ -54,7 +54,7 @@
 
      </table>
      <p></p>
-     <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
+     <p><a class="btn btn-primary" href="{% url 'home' %}">Palaa pääikkunaan</a></p>
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
@@ -89,6 +89,7 @@
               8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"/>
             </svg>
           </td>
+
           {% elif korvaus.status == 'LAH' %}
           <td>
             <svg width="24" height="24" fill = "gold" xmlns="http://www.w3.org/2000/svg"
@@ -105,16 +106,15 @@
           </td>
         </tr>
 
-
    {% endfor %}
    </table>
 
    <p>Korvaushakemustesi summa on yhteensä <b>{{ total }}</b> €</p>
 
-
   {% else %}
      Sinulla ei ole järjestelmään tallennettuja kulukorvauksia
   {% endif %}
-  <p><a href="{% url 'home' %}">Palaa pääikkunaan</a></p>
+  
+  <a class="btn btn-primary" href="{% url 'home' %}">Palaa pääikkunaan</a>
 </div>
 {% endblock %}

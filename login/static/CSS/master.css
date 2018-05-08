@@ -1,0 +1,6 @@
+div.bg{
+    background-image: url('manager_logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 200px, contain;
+}

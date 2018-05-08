@@ -28,7 +28,6 @@ def upload(request):
             instance = form.save(commit=False)
             instance.palauttaja = request.user
             instance.save()
-
             messages.success(request, 'Tiedoston lataaminen onnistui')
 
     else:
@@ -39,10 +38,6 @@ def upload(request):
 
 def korvaukset(request):
 
-    if request.method == 'POST':
-        #tähän erittely updatelle
-        print(request)
-
     kulukorvaukset = Document.objects.filter(palauttaja_id=request.user.id)
     korvaussummat = Document.objects.filter(palauttaja_id=request.user.id).values('korvaussumma')
 
@@ -51,7 +46,7 @@ def korvaukset(request):
 
     for summa in korvaussummat:
         total_list.append(list(summa.values()))
-        
+
     for korvaussumma in total_list:
         for alkio in korvaussumma:
             total += alkio

@@ -1,17 +1,24 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
   <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <!--<link rel="stylesheet" href="{% static 'master.css' %}">-->
   <meta charset="utf-8">
   <title>{% block title %}Authentication{% endblock %}</title>
 </head>
-<body>
+
+<body class="bg-light text-dark">
+  <div class="bg">
+
+
   <main>
     {% block content %}
     {% endblock %}
   </main>
 </body>
+</div>
 <p style="font-size:10px" class="m-4">© Teemu Mikkonen 2018</p>
 </html>

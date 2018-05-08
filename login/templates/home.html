@@ -6,16 +6,24 @@
 {% block content %}
 <div class="m-4 pb-3">
 
-
 {% if user.is_authenticated %}
-  <h1>Tervetuloa {{ user.username }}!</h1>
+  <h1 class="text-center">Tervetuloa {{ user.username }}</h1>
   <p></p>
-  <h6><a class="btn btn-primary" href="{% url 'upload' %}">Lisää kulukorvaus</a></h6>
+  <p class ="text-center">Valitse haluamasi toiminto</p>
   <p></p>
-  <h6><a class="btn btn-primary" href="{% url 'korvaukset' %}">Tarkastele kulukorvauksia</a></h6>
-  <p></p>
-  <h6><a class="btn btn-primary" href="{% url 'logout' %}">Kirjaudu ulos</a></h6>
+
+  <div class="text-center">
+    <div class="btn-group btn-group-lg">
+      <a class="btn btn-primary" href="{% url 'upload' %}">Lisää kulukorvaus</a>
+      <p></p>
+      <a class="btn btn-primary" href="{% url 'korvaukset' %}">Tarkastele kulukorvauksia</a>
+      <p></p>
+      <a class="btn btn-primary" href="{% url 'logout' %}">Kirjaudu ulos</a>
+    </div>
+  </div>
+
 {% else %}
+
 <head>
   <title>Kulukorvaushakemusjärjestelmä</title>
 </head>
@@ -25,10 +33,14 @@
     <p></p>
 
   <h6>
+  <div class="btn-group btn-group-lg">
+
+
   <a class="btn btn-primary" href="{% url 'signup' %}">Rekisteröidy palveluun</a></h6>
   <p></p>
   <h6>
   <a class="btn btn-primary" href="{% url 'login' %}">Kirjaudu</a></h6>
+  </div>
 {% endif %}
 </div>
 {% endblock %}

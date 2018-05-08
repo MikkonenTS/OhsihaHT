@@ -1,0 +1,6 @@
+body{
+    background-image: url('manager_logo.svg') !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
